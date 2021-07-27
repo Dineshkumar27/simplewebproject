@@ -4,12 +4,17 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-               git 'https://github.com/Dineshkumar27/simplewebproject.git'
+               echo 'Git Checkout is Success'
             }
         }
         stage('Maven build') {
             steps {
                sh "${MAVEN_HOME}/bin/mvn clean install"
+            }
+        }
+        stage('Archiving Artifacts'){
+            steps{
+                archiveArtifacts artifacts: 'target/*.war'
             }
         }
     }
