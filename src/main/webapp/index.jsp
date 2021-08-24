@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>Successfully Deployed in Tomcat Server on Friday</h2>
+<h2>Successfully Deployed in Tomcat Server using Jenkins</h2>
 </body>
 </html>
