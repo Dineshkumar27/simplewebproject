@@ -1,20 +1,25 @@
 pipeline {
     agent any
 
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "MAVEN"
+    }
+
     stages {
-        stage('Git Checkout') {
+        stage('GET PROJECT FROM GIT') {
             steps {
-               echo 'Git Checkout is Success'
+               git 'https://github.com/Dineshkumar27/simplewebproject.git'
             }
         }
-        stage('Maven build') {
+        stage('PACKAGING MAVEN PROJECT') {
             steps {
-               echo 'Maven Packagin is Success'
+               bat "mvn clean package"
             }
         }
-        stage('Archiving Artifacts'){
-            steps{
-                echo 'Archiving Artifact is Success'
+        stage('Deploye to tomcat') {
+            steps {
+               deploy adapters: [tomcat8(credentialsId: 'tomcat-login', path: '', url: 'http://localhost:8080/')], contextPath: 'simplewebproject', war: '**/*.war'
             }
         }
     }
