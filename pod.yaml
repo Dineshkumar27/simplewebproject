@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mywebapp
+  labels:
+    app: mywebapp
+spec:
+  containers:
+    - name: mywebapp
+      image: dineshkumar27/webapp21:2.0
+      ports:
+        - containerPort: 8080
